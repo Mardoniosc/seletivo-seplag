@@ -1,4 +1,4 @@
-<div class="tamnho-maximo-tela">
+<div class="tamnho-maximo-tela bg-gray-50">
 
   <div class="w-full mt-20">
 
@@ -25,28 +25,29 @@
 
       <div class="">
         <h3 class="-mb-2 font-semibold text-gray-900">Sexo</h3>
-        <ul class="items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex list-none">
+        <ul
+          class="items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex list-none">
           <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
             <div class="flex items-center ps-3">
-              <input id="horizontal-list-radio-id" type="radio" value="" [(ngModel)]="sexo" name="sexo"
+              <input id="horizontal-list-radio-todos" type="radio" value="" [(ngModel)]="sexo" name="sexo"
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-              <label for="horizontal-list-radio-id" class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">Os
+              <label for="horizontal-list-radio-todos" class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">Os
                 dois</label>
             </div>
           </li>
           <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
             <div class="flex items-center ps-3">
-              <input id="horizontal-list-radio-id" type="radio" value="MASCULINO" [(ngModel)]="sexo" name="sexo"
+              <input id="horizontal-list-radio-masculino" type="radio" value="MASCULINO" [(ngModel)]="sexo" name="sexo"
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-              <label for="horizontal-list-radio-id"
+              <label for="horizontal-list-radio-masculino"
                 class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">MASCULINO</label>
             </div>
           </li>
           <li class="w-full ">
             <div class="flex items-center ps-3">
-              <input id="horizontal-list-radio-passport" type="radio" [(ngModel)]="sexo" value="FEMININO" name="sexo"
+              <input id="horizontal-list-radio-feminino" type="radio" [(ngModel)]="sexo" value="FEMININO" name="sexo"
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-              <label for="horizontal-list-radio-passport"
+              <label for="horizontal-list-radio-feminino"
                 class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">FEMININO</label>
             </div>
           </li>
@@ -54,53 +55,50 @@
       </div>
       <div class="">
         <h3 class="-mb-2 font-semibold text-gray-900">Status</h3>
-        <ul class="items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex list-none">
+        <ul
+          class="items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex list-none">
 
           <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
             <div class="flex items-center ps-3">
-              <input id="horizontal-list-radio-id" type="radio" value="" [(ngModel)]="status" name="status"
+              <input id="horizontal-list-radio-todos" type="radio" value="" [(ngModel)]="status" name="status"
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-              <label for="horizontal-list-radio-id" class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">Os
+              <label for="horizontal-list-radio-todos" class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">Os
                 dois</label>
             </div>
           </li>
           <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
             <div class="flex items-center ps-3">
-              <input id="horizontal-list-radio-id" type="radio" value="DESAPARECIDO" [(ngModel)]="status" name="status"
+              <input id="horizontal-list-radio-desaparecido" type="radio" value="DESAPARECIDO" [(ngModel)]="status" name="status"
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-              <label for="horizontal-list-radio-id"
+              <label for="horizontal-list-radio-desaparecido"
                 class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">DESAPARECIDO(A)</label>
             </div>
           </li>
           <li class="w-full ">
             <div class="flex items-center ps-3">
-              <input id="horizontal-list-radio-passport" type="radio" [(ngModel)]="status" value="ENCONTRADO"
+              <input id="horizontal-list-radio-localizado" type="radio" [(ngModel)]="status" value="LOCALIZADO"
                 name="status" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-              <label for="horizontal-list-radio-passport"
-                class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">ENCONTRADO(A)</label>
+              <label for="horizontal-list-radio-localizado"
+                class="w-full py-3 mt-1 ms-2 text-sm font-medium text-gray-900 ">LOCALIZADO(A)</label>
             </div>
           </li>
         </ul>
       </div>
 
 
-      <div class="">
+      <div class="pr-5">
         <h3 class="-mb-2 font-semibold text-gray-900">Idade</h3>
 
         <div class="grid gap-6 mb-6 md:grid-cols-2 mt-3">
           <div>
             <input type="text" id="first_name"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              type="number"
-              [(ngModel)]="idadeInicial"
-              placeholder="Idade mínima" />
+              type="number" [(ngModel)]="idadeInicial" placeholder="Idade mínima" />
           </div>
-          <div>
+          <div class="px-1">
             <input type="text" id="last_name"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              type="number"
-              [(ngModel)]="idadeFinal"
-              placeholder="Idade Máxima" />
+              type="number" [(ngModel)]="idadeFinal" placeholder="Idade Máxima" />
           </div>
         </div>
       </div>
@@ -130,7 +128,7 @@
             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
         </svg>
         <span class="sr-only">Info</span>
-        <h3 class="text-lg font-medium">Nenhum item encontrado!</h3>
+        <h3 class="text-lg font-medium">Nenhum item localizado!</h3>
       </div>
       <div class="mt-2 mb-4 text-sm">
         Favor realizar nova consulta mudando os parametros de pesquisa <strong>{{nome ? ', Nome: ' + nome : ''}} {{sexo
@@ -138,6 +136,9 @@
       </div>
 
     </div>
+    } @else {
+      <mat-paginator class="mt-2 sm:mt-4 rounded-xl border" hidePageSize [pageSize]="pageSize" [length]="length"
+      showFirstLastButtons [pageIndex]="pageIndex" (page)="paginacao($event)"></mat-paginator>
     }
   </div>
 </div>

@@ -50,7 +50,7 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
 
   length = 0;
   pageIndex = 0;
-  pageSize = 20;
+  pageSize = 15;
   pageEvent!: PageEvent;
   currentPage = 0;
 
@@ -80,16 +80,17 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.removeInscricao$))
       .subscribe({
         next: (listaDesaparecidos: ResponseDesaparecido) => {
-          console.log(listaDesaparecidos);
           this.listaDesaparecidos = listaDesaparecidos.content;
           this.length = listaDesaparecidos.totalElements;
+          this.pageIndex = listaDesaparecidos.number;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         },
       });
 
     this._desaparecidosFacade.carregaListaDesaparecidos(this.parametros);
   }
 
-  paginacao(event: Event): void {
+  paginacao(event: any): void {
     this.pageSize = (event as any)['pageSize'];
     this.currentPage = (event as any)['pageIndex'];
 
@@ -97,6 +98,7 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
       .set('pagina', (event as any)['pageIndex'])
       .set('porPagina', this.pageSize);
 
+    this.listaDesaparecidos = [];
     this._desaparecidosFacade.carregaListaDesaparecidos(this.parametros);
   }
 
@@ -105,7 +107,7 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
 
     this.length = 0;
     this.pageIndex = 0;
-    this.pageSize = 20;
+    this.pageSize = 15;
     this.parametros = new HttpParams()
       .set('pagina', this.pageIndex)
       .set('porPagina', this.pageSize);

@@ -1,25 +1,9 @@
-<!-- <div class="bg-white shadow-md p-4 rounded border-2"
-  [ngClass]="{'border-red-500': desaparecido.ultimaOcorrencia.dataLocalizacao !== null, 'border-green-500': desaparecido.ultimaOcorrencia.dataLocalizacao === null}">
-  @if (desaparecido.urlFoto) {
-  <img [src]="desaparecido.urlFoto" alt="Foto da desaparecido" class="w-full h-80 rounded-md object-cover mb-4">
-  } @else {
-  <img src="../../../../../assets/Img/semimagem.gif" class="w-full h-80 rounded-md object-cover mb-4" alt="Sem Imagem">
-  }
-  <h2 class="text-lg font-bold mb-2">{{desaparecido.nome}}</h2>
-  <p class="text-gray-600 mb-2">Idade: {{desaparecido.idade}} anos</p>
-  <p class="text-gray-600 mb-2">Vivo: {{desaparecido.vivo}}</p>
-  <p class="text-gray-600 mb-2">Sexo: {{desaparecido.sexo}}</p>
-</div> -->
-
-
-
-
 <div class="max-w-md bg-gray-200 border-2 border-gray-200 rounded-lg shadow-sm h-full"
   [ngClass]="{'border-green-500 hover:border-green-700': dataLocalizacao !== null, 'border-red-500 hover:border-red-700': dataLocalizacao === null}">
   <div class="w-full flex items-center justify-center ml-0.5 -m-9">
     <p class="text-4xl w-full text-center rounded-t-md -ml-1"
       [ngClass]="{'bg-green-500': dataLocalizacao !== null, 'bg-red-500': dataLocalizacao === null}">{{dataLocalizacao
-      !== null ? 'Encontrado(a)' : 'Desaparecido(a)'}}</p>
+      !== null ? 'Localizado(a)' : 'Desaparecido(a)'}}</p>
   </div>
   @if (desaparecido.urlFoto) {
   <img class="w-full h-80" [src]="desaparecido.urlFoto" alt="" />
@@ -40,6 +24,12 @@
       <span class="text-gray-800 font-normal text-md">Sexo: <strong>{{desaparecido.sexo}}</strong></span>
       <span class="text-gray-800 font-normal text-md">Desaparecido em:
         <strong>{{desaparecido.ultimaOcorrencia.dtDesaparecimento | date: 'dd/MM/YYYY'}}</strong></span>
+
+      @if (dataLocalizacao) {
+      <span class="text-gray-800 font-normal text-md">Localizado em: <strong>{{dataLocalizacao | date:
+          'dd/MM/YYYY'}}</strong></span>
+      }
+
     </div>
 
   </div>
