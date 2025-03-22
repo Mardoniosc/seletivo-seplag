@@ -1,0 +1,26 @@
+<h1>Lista Desaparecidos</h1>
+<header class="bg-white shadow-md p-4 mb-4">
+  <nav class="flex justify-between">
+      <h1 class="text-lg font-bold">Sistema de Pessoas Desaparecidas</h1>
+      <ul class="flex items-center space-x-4">
+          <li><a href="#" class="text-blue-600 hover:text-blue-900">Home</a></li>
+          <li><a href="#" class="text-blue-600 hover:text-blue-900">Cadastrar Desaparecimento</a></li>
+          <li><a href="#" class="text-blue-600 hover:text-blue-900">Login</a></li>
+      </ul>
+  </nav>
+</header>
+
+<section class="flex justify-between mb-4">
+  <input type="search" placeholder="Pesquisar por nome ou detalhes" class="w-full md:w-1/2 lg:w-1/3 p-2 pl-10 text-sm text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <div class="flex space-x-2">
+      <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" >Desaparecidos</button>
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" >Localizados</button>
+  </div>
+</section>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  @for (pessoa of listaDesaparecidos; track $index) {
+    <app-card-desaparecido [desaparecido]="pessoa" ></app-card-desaparecido>
+  }
+
+</div>

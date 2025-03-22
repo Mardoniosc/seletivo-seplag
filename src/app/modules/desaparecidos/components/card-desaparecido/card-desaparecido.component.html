@@ -1,0 +1,12 @@
+<div class="bg-white shadow-md p-4 rounded border-2"
+  [ngClass]="{'border-red-500': desaparecido.ultimaOcorrencia.dataLocalizacao !== null, 'border-green-500': desaparecido.ultimaOcorrencia.dataLocalizacao === null}">
+  @if (desaparecido.urlFoto) {
+  <img [src]="desaparecido.urlFoto" alt="Foto da desaparecido" class="w-full h-80 rounded-md object-cover mb-4">
+  } @else {
+  <img src="../../../../../assets/Img/semimagem.gif" class="w-full h-80 rounded-md object-cover mb-4" alt="Sem Imagem">
+  }
+  <h2 class="text-lg font-bold mb-2">{{desaparecido.nome}}</h2>
+  <p class="text-gray-600 mb-2">Idade: {{desaparecido.idade}} anos</p>
+  <p class="text-gray-600 mb-2">Vivo: {{desaparecido.vivo}}</p>
+  <p class="text-gray-600 mb-2">Sexo: {{desaparecido.sexo}}</p>
+</div>
