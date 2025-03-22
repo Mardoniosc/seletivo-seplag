@@ -1,4 +1,4 @@
-<div class="bg-white shadow-md p-4 rounded border-2"
+<!-- <div class="bg-white shadow-md p-4 rounded border-2"
   [ngClass]="{'border-red-500': desaparecido.ultimaOcorrencia.dataLocalizacao !== null, 'border-green-500': desaparecido.ultimaOcorrencia.dataLocalizacao === null}">
   @if (desaparecido.urlFoto) {
   <img [src]="desaparecido.urlFoto" alt="Foto da desaparecido" class="w-full h-80 rounded-md object-cover mb-4">
@@ -9,4 +9,50 @@
   <p class="text-gray-600 mb-2">Idade: {{desaparecido.idade}} anos</p>
   <p class="text-gray-600 mb-2">Vivo: {{desaparecido.vivo}}</p>
   <p class="text-gray-600 mb-2">Sexo: {{desaparecido.sexo}}</p>
+</div> -->
+
+
+
+
+<div class="max-w-md bg-gray-200 border-2 border-gray-200 rounded-lg shadow-sm h-full"
+  [ngClass]="{'border-green-500 hover:border-green-700': dataLocalizacao !== null, 'border-red-500 hover:border-red-700': dataLocalizacao === null}">
+  <div class="w-full flex items-center justify-center ml-0.5 -m-9">
+    <p class="text-4xl w-full text-center rounded-t-md -ml-1"
+      [ngClass]="{'bg-green-500': dataLocalizacao !== null, 'bg-red-500': dataLocalizacao === null}">{{dataLocalizacao
+      !== null ? 'Encontrado(a)' : 'Desaparecido(a)'}}</p>
+  </div>
+  @if (desaparecido.urlFoto) {
+  <img class="w-full h-80" [src]="desaparecido.urlFoto" alt="" />
+
+  }@else {
+  <img class="w-full h-80" src="../../../../../assets/Img/semimagem.gif" alt="" />
+  }
+
+
+  <div class="px-5">
+
+    <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">{{desaparecido.nome}}</h5>
+
+    <div class="flex flex-col -mt-6">
+      <span class="text-gray-800 font-normal text-md">Idade: <strong>{{desaparecido.idade}} anos</strong></span>
+      <span class="text-gray-800 font-normal text-md">Vivo: <strong>{{desaparecido.vivo ? 'Sim' :
+          'Não'}}</strong></span>
+      <span class="text-gray-800 font-normal text-md">Sexo: <strong>{{desaparecido.sexo}}</strong></span>
+      <span class="text-gray-800 font-normal text-md">Desaparecido em:
+        <strong>{{desaparecido.ultimaOcorrencia.dtDesaparecimento | date: 'dd/MM/YYYY'}}</strong></span>
+    </div>
+
+  </div>
+  <div class="mt-2 -ml-3 flex w-full justify-end">
+    <div
+      class="cursor-pointer mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Clique aqui para mais detalhes
+      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M1 5h12m0 0L9 1m4 4L9 9" />
+      </svg>
+    </div>
+  </div>
+  <div class="mb-4"></div>
 </div>

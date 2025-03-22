@@ -2,14 +2,16 @@ import { HttpClientModule, HttpParams } from '@angular/common/http';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, takeUntil } from 'rxjs';
+import { ETipoMensagem } from '../../../../shared/Models/enums/shared.enums';
+import { MensagemService } from '../../../../shared/services/Mensagem.service';
 import { CardDesaparecidoComponent } from '../../components/card-desaparecido/card-desaparecido.component';
 import { DesaparecidosFacade } from '../../desaparecido.facade';
 import { DesaparecidosState } from '../../desaparecido.state';
@@ -36,6 +38,7 @@ import { DesaparecidosService } from '../../services/desaparecido.service';
     MatSelectModule,
     HttpClientModule,
     CardDesaparecidoComponent,
+    MatRadioModule,
   ],
   providers: [DesaparecidosFacade, DesaparecidosState, DesaparecidosService],
 })
@@ -47,21 +50,24 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
 
   length = 0;
   pageIndex = 0;
-  pageSize = 10;
+  pageSize = 20;
   pageEvent!: PageEvent;
   currentPage = 0;
 
-  protocolo: string = '';
-
   removeInscricao$ = new Subject<void>();
 
-  parametros = new HttpParams()
-    .set('page', this.pageIndex)
-    .set('size', this.pageSize);
+  //  filtros
+  sexo: string = '';
+  nome: string = '';
+  status: string = '';
+  idadeInicial: number = 0;
+  idadeFinal: number = 0;
 
-  constructor(private _matDialog: MatDialog) {
-    console.warn('LISTA DESAPARECIDOS');
-  }
+  parametros = new HttpParams()
+    .set('pagina', this.pageIndex)
+    .set('porPagina', this.pageSize);
+
+  constructor(private _mensagemService: MensagemService) {}
 
   ngOnInit(): void {
     this._desaparecidosFacade.carregandoListaDesaparecidos$
@@ -88,8 +94,8 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
     this.currentPage = (event as any)['pageIndex'];
 
     this.parametros = this.parametros
-      .set('page', (event as any)['pageIndex'])
-      .set('size', this.pageSize);
+      .set('pagina', (event as any)['pageIndex'])
+      .set('porPagina', this.pageSize);
 
     this._desaparecidosFacade.carregaListaDesaparecidos(this.parametros);
   }
@@ -99,12 +105,42 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
 
     this.length = 0;
     this.pageIndex = 0;
-    this.pageSize = 10;
+    this.pageSize = 20;
+    this.parametros = new HttpParams()
+      .set('pagina', this.pageIndex)
+      .set('porPagina', this.pageSize);
 
-    if (this.protocolo !== '') {
-      this.parametros = this.parametros
-        .set('page', this.pageIndex)
-        .set('size', this.pageSize);
+    if (this.sexo) {
+      this.parametros = this.parametros.set('sexo', this.sexo);
+    }
+
+    if (this.nome) {
+      this.parametros = this.parametros.set('nome', this.nome);
+    }
+
+    if (this.status) {
+      this.parametros = this.parametros.set('status', this.status);
+    }
+
+    if (this.idadeInicial > 0) {
+      if (
+        this.idadeFinal > 0 &&
+        Number(this.idadeInicial) > Number(this.idadeFinal)
+      ) {
+        this._mensagemService.mensagem(
+          'A idade inicial não pode ser maior que a idade final',
+          ETipoMensagem.INFO
+        );
+        return;
+      }
+      this.parametros = this.parametros.set(
+        'faixaIdadeInicial',
+        this.idadeInicial
+      );
+    }
+
+    if (this.idadeFinal > 0) {
+      this.parametros = this.parametros.set('faixaIdadeFinal', this.idadeFinal);
     }
 
     this._desaparecidosFacade.carregaListaDesaparecidos(this.parametros);

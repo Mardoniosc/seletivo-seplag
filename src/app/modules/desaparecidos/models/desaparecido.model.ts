@@ -23,8 +23,8 @@ export interface Desaparecido {
 }
 
 export interface UltimaOcorrencia {
-  dtDesaparecimento: Date;
-  dataLocalizacao: Date;
+  dtDesaparecimento: string;
+  dataLocalizacao: string;
   encontradoVivo: boolean;
   localDesaparecimentoConcat: string;
   ocorrenciaEntrevDesapDTO: OcorrenciaEntrevDesapDTO;
