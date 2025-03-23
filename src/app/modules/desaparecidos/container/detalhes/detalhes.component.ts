@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ButtonCompartilharComponent } from '../../../../shared/components/button-compartilhar/button-compartilhar.component';
 import { MensagemService } from '../../../../shared/services/Mensagem.service';
 import { CardCartazComponent } from '../../components/card-cartaz/card-cartaz.component';
@@ -20,6 +20,7 @@ import { DesaparecidosService } from '../../services/desaparecido.service';
     CardCartazComponent,
     ButtonCompartilharComponent,
     MatDialogModule,
+    RouterLink,
   ],
   templateUrl: './detalhes.component.html',
   styleUrl: './detalhes.component.scss',

@@ -1,6 +1,15 @@
 <div class="mt-20"></div>
 
+
 <div class="max-w-[80%] flex flex-col mx-auto p-4 items-center justify-start bg-gray-50 h-full rounded-md">
+  <div class="w-full flex justify-start my-3">
+    <button routerLink="/desaparecido" type="button" class="flex items-center space-x-1 cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 ">
+      <svg class="mr-1" width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#000000" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"/><path fill="#000000" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"/></svg>
+      Voltar</button>
+
+  </div>
+
+
   @if (desaparecido) {
   <app-card-desaparecido class="md:w-full" [desaparecido]="desaparecido" [completo]="true"></app-card-desaparecido>
   }
@@ -16,7 +25,10 @@
 
   <div class="w-full flex justify-end">
     <button type="button" (click)="adicionarInformacoes()"
-      class="text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none cursor-pointer mt-5">
+      class="flex items-center text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none cursor-pointer mt-5">
+      <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-1">
+        <path d="M4 12H20M12 4V20" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       Adicionar mais informações
     </button>
 
