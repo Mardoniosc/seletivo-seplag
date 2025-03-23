@@ -1,18 +1,26 @@
-import { JsonPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ButtonCompartilharComponent } from '../../../../shared/components/button-compartilhar/button-compartilhar.component';
 import { MensagemService } from '../../../../shared/services/Mensagem.service';
+import { CardCartazComponent } from '../../components/card-cartaz/card-cartaz.component';
 import { CardDesaparecidoComponent } from '../../components/card-desaparecido/card-desaparecido.component';
+import { FormInformacoesComponent } from '../../components/form-informacoes/form-informacoes.component';
 import { DesaparecidosFacade } from '../../desaparecido.facade';
 import { DesaparecidosState } from '../../desaparecido.state';
 import { Desaparecido } from '../../models/desaparecido.model';
 import { DesaparecidosService } from '../../services/desaparecido.service';
-import { CardCartazComponent } from '../../components/card-cartaz/card-cartaz.component';
 
 @Component({
   selector: 'app-detalhes',
-  imports: [HttpClientModule, CardDesaparecidoComponent, CardCartazComponent],
+  imports: [
+    HttpClientModule,
+    CardDesaparecidoComponent,
+    CardCartazComponent,
+    ButtonCompartilharComponent,
+    MatDialogModule,
+  ],
   templateUrl: './detalhes.component.html',
   styleUrl: './detalhes.component.scss',
   standalone: true,
@@ -23,14 +31,22 @@ export class DetalhesComponent implements OnInit {
 
   desaparecido!: Desaparecido;
 
+  readonly dialog = inject(MatDialog);
+
   constructor(
     private _desaparecidosService: DesaparecidosService,
-    private route: ActivatedRoute,
-    private _mensagemService: MensagemService
+    private _mensagemService: MensagemService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this._carregaIdDesaparecido();
+  }
+
+  adicionarInformacoes() {
+    this.dialog.open(FormInformacoesComponent, {
+      data: this.desaparecido,
+    });
   }
 
   private _carregaIdDesaparecido() {

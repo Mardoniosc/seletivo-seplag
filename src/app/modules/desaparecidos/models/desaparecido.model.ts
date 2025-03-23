@@ -27,8 +27,8 @@ export interface UltimaOcorrencia {
   dataLocalizacao: string;
   encontradoVivo: boolean;
   localDesaparecimentoConcat: string;
-  ocorrenciaEntrevDesapDTO: OcorrenciaEntrevDesapDTO;
-  listaCartaz: Cartaz[];
+  ocorrenciaEntrevDesapDTO: OcorrenciaEntrevDesapDTO | null;
+  listaCartaz: Cartaz[] | null;
   ocoId: number;
 }
 

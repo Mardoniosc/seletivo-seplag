@@ -1,14 +1,17 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from '../../../../environments/environment';
-import { ResponseDesaparecido } from '../models/desaparecido.model';
+import {
+  Desaparecido,
+  ResponseDesaparecido,
+} from '../models/desaparecido.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DesaparecidosService {
-  constructor(private http: HttpClient) {}
+  readonly http = inject(HttpClient);
 
   listaDesaparecidos(parametros: HttpParams): Observable<ResponseDesaparecido> {
     return this.http.get<ResponseDesaparecido>(
@@ -17,7 +20,19 @@ export class DesaparecidosService {
     );
   }
 
-  buscarDesaparecido(id: number): Observable<any> {
-    return this.http.get<any>(`${env.apiUrl}/pessoas/${id}`);
+  buscarDesaparecido(id: number): Observable<Desaparecido> {
+    return this.http.get<Desaparecido>(`${env.apiUrl}/pessoas/${id}`);
+  }
+
+  salvarInformacoes(formData: FormData): Observable<any> {
+    const headers = new HttpHeaders({
+      Accept: '*/*',
+    });
+
+    return this.http.post(
+      `${env.apiUrl}/ocorrencias/informacoes-desaparecido`,
+      formData,
+      { headers }
+    );
   }
 }

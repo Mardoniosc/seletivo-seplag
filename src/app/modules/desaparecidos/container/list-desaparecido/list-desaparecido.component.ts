@@ -67,7 +67,7 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
     .set('pagina', this.pageIndex)
     .set('porPagina', this.pageSize);
 
-  constructor(private _mensagemService: MensagemService) {}
+  readonly _mensagemService = inject(MensagemService);
 
   ngOnInit(): void {
     this._desaparecidosFacade.carregandoListaDesaparecidos$

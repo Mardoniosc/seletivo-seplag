@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { ButtonCompartilharComponent } from '../../../../shared/components/button-compartilhar/button-compartilhar.component';
 import { Cartaz } from '../../models/desaparecido.model';
 
 @Component({
   selector: 'app-card-cartaz',
-  imports: [],
+  imports: [ButtonCompartilharComponent],
   templateUrl: './card-cartaz.component.html',
   styleUrl: './card-cartaz.component.scss',
 })

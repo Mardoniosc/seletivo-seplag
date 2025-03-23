@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AlertService } from '../../core/alert/alert.service';
 import { ETipoMensagem } from '../Models/enums/shared.enums';
 
@@ -6,7 +6,7 @@ import { ETipoMensagem } from '../Models/enums/shared.enums';
   providedIn: 'root',
 })
 export class MensagemService {
-  constructor(private _alert: AlertService) {}
+  readonly _alert = inject(AlertService);
 
   mensagem(mensagem: string, tipo: ETipoMensagem): void {
     if (ETipoMensagem.INFO === tipo) {

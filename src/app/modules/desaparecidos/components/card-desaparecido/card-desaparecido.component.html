@@ -1,5 +1,4 @@
-<div class="bg-gray-200 border-2 border-gray-200 rounded-lg shadow-sm h-full max-w-md"
-  [ngClass]="{
+<div class="bg-gray-200 border-2 border-gray-200 rounded-lg shadow-sm h-full max-w-md" [ngClass]="{
     'border-green-500 hover:border-green-700': dataLocalizacao !== null,
     'border-red-500 hover:border-red-700': dataLocalizacao === null,
     'flex md:flex-row flex-col md:max-w-full': completo}">
@@ -54,10 +53,10 @@
           <strong>{{desaparecido.ultimaOcorrencia.encontradoVivo ? 'Sim' : 'Não'}}</strong></span>
 
         <span class="text-gray-800 font-normal text-md">Informação Entrevista:
-          <strong>{{desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO.informacao || 'Não Informado'}}</strong></span>
+          <strong>{{desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO?.informacao || 'Não Informado'}}</strong></span>
 
         <span class="text-gray-800 font-normal text-md">Vestimento do desaparecido:
-          <strong>{{desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO.vestimentasDesaparecido || 'Não Informado'}}</strong></span>
+          <strong>{{desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO?.vestimentasDesaparecido || 'Não Informado'}}</strong></span>
         }
 
       </div>
@@ -66,17 +65,13 @@
 
   </div>
   @if (!completo) {
-  <div class="mt-2 -ml-3 flex w-full justify-end">
-    <div routerLink="{{desaparecido.id}}"
-      class="cursor-pointer mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+  <div class="mt-2 p-3">
+    <button routerLink="{{desaparecido.id}}" type="button"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none cursor-pointer w-full">
       Clique aqui para mais detalhes
-      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-        viewBox="0 0 14 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M1 5h12m0 0L9 1m4 4L9 9" />
-      </svg>
-    </div>
+    </button>
+
   </div>
   }
-  <div class="mb-4"></div>
+
 </div>

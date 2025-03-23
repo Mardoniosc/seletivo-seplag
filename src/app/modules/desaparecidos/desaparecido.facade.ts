@@ -87,8 +87,6 @@ export class DesaparecidosFacade implements OnDestroy {
   }
 
   getDesaparecido(idDesaparecido: number): Desaparecido | null {
-    console.log(this._desaparecidoState.listaDesaparecidos);
-    console.log(this._desaparecidoState.carregandoListaDesaparecidos);
     if (this._desaparecidoState.listaDesaparecidos.content) {
       const desaparecido =
         this._desaparecidoState.listaDesaparecidos.content.find(

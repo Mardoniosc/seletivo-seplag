@@ -12,8 +12,6 @@ export class DesaparecidosState {
   private readonly _carregandoListaDesaparecidos$ =
     new BehaviorSubject<boolean>(false);
 
-  constructor() {}
-
   //
   // _listaDesaparecidos$
   //

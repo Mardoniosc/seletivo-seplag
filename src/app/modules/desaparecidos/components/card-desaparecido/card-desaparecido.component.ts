@@ -19,10 +19,7 @@ export class CardDesaparecidoComponent implements OnInit {
 
   dataLocalizacao: string | null = null;
 
-  constructor() {}
-
   ngOnInit() {
-    console.log(this.desaparecido);
     this.dataLocalizacao =
       this.desaparecido.ultimaOcorrencia.dataLocalizacao ?? null;
   }
