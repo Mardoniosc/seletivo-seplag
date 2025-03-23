@@ -2,8 +2,8 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: 'desaparecido',
     loadChildren: () => import('./modules/desaparecidos/desaparecido.routes'),
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/desaparecido', pathMatch: 'full' },
 ];

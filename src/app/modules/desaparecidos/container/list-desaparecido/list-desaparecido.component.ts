@@ -60,8 +60,8 @@ export class ListDesaparecidosComponent implements OnInit, OnDestroy {
   sexo: string = '';
   nome: string = '';
   status: string = '';
-  idadeInicial: number = 0;
-  idadeFinal: number = 0;
+  idadeInicial!: number;
+  idadeFinal!: number;
 
   parametros = new HttpParams()
     .set('pagina', this.pageIndex)

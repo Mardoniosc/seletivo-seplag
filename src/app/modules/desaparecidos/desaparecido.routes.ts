@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import { ListDesaparecidosComponent } from './container/list-historico-chat/list-desaparecido.component';
+import { DetalhesComponent } from './container/detalhes/detalhes.component';
+import { ListDesaparecidosComponent } from './container/list-desaparecido/list-desaparecido.component';
 
 export default [
   { path: '', component: ListDesaparecidosComponent },
   // { path: 'novo', component: formDesaparecidosComponent },
-  // { path: 'desaparecido/:id', component: formDesaparecidosComponent },
+  { path: ':id', component: DetalhesComponent },
 ] as Routes;

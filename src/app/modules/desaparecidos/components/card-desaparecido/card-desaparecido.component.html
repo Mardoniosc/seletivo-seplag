@@ -1,40 +1,73 @@
-<div class="max-w-md bg-gray-200 border-2 border-gray-200 rounded-lg shadow-sm h-full"
-  [ngClass]="{'border-green-500 hover:border-green-700': dataLocalizacao !== null, 'border-red-500 hover:border-red-700': dataLocalizacao === null}">
+<div class="bg-gray-200 border-2 border-gray-200 rounded-lg shadow-sm h-full max-w-md"
+  [ngClass]="{
+    'border-green-500 hover:border-green-700': dataLocalizacao !== null,
+    'border-red-500 hover:border-red-700': dataLocalizacao === null,
+    'flex md:flex-row flex-col md:max-w-full': completo}">
+  @if (!completo) {
   <div class="w-full flex items-center justify-center ml-0.5 -m-9">
-    <p class="text-4xl w-full text-center rounded-t-md -ml-1"
+    <p class="text-4xl w-full text-center rounded-t-md -ml-1 text-gray-800"
       [ngClass]="{'bg-green-500': dataLocalizacao !== null, 'bg-red-500': dataLocalizacao === null}">{{dataLocalizacao
       !== null ? 'Localizado(a)' : 'Desaparecido(a)'}}</p>
   </div>
+  }
   @if (desaparecido.urlFoto) {
-  <img class="w-full h-80" [src]="desaparecido.urlFoto" alt="" />
+  <img class="h-80" [src]="desaparecido.urlFoto" alt="" [ngClass]="{'max-w-md': completo, 'w-full': !completo, }" />
 
   }@else {
-  <img class="w-full h-80" src="../../../../../assets/Img/semimagem.gif" alt="" />
+  <img class="h-80" src="../../../../../assets/Img/semimagem.gif" alt=""
+    [ngClass]="{'max-w-md': completo, 'w-full': !completo, }" />
   }
 
 
   <div class="px-5">
 
+    @if (completo) {
+    <div class="w-full flex items-center justify-center ml-0.5 -m-9">
+      <p class="text-4xl w-full text-center -ml-11 rounded-br-md text-gray-800"
+        [ngClass]="{'bg-green-500': dataLocalizacao !== null, 'bg-red-500': dataLocalizacao === null}">{{dataLocalizacao
+        !== null ? 'Localizado(a)' : 'Desaparecido(a)'}}</p>
+    </div>
+    }
+
     <h5 class="text-2xl font-bold tracking-tight text-gray-900 ">{{desaparecido.nome}}</h5>
 
-    <div class="flex flex-col -mt-6">
-      <span class="text-gray-800 font-normal text-md">Idade: <strong>{{desaparecido.idade}} anos</strong></span>
-      <span class="text-gray-800 font-normal text-md">Vivo: <strong>{{desaparecido.vivo ? 'Sim' :
-          'Não'}}</strong></span>
-      <span class="text-gray-800 font-normal text-md">Sexo: <strong>{{desaparecido.sexo}}</strong></span>
-      <span class="text-gray-800 font-normal text-md">Desaparecido em:
-        <strong>{{desaparecido.ultimaOcorrencia.dtDesaparecimento | date: 'dd/MM/YYYY'}}</strong></span>
+    <div class="flex">
+      <div class="flex flex-col -mt-6 mr-2">
+        <span class="text-gray-800 font-normal text-md">Idade: <strong>{{desaparecido.idade}} anos</strong></span>
+        <span class="text-gray-800 font-normal text-md">Vivo: <strong>{{desaparecido.vivo ? 'Sim' :
+            'Não'}}</strong></span>
+        <span class="text-gray-800 font-normal text-md">Sexo: <strong>{{desaparecido.sexo}}</strong></span>
+        <span class="text-gray-800 font-normal text-md">Desaparecido em:
+          <strong>{{desaparecido.ultimaOcorrencia.dtDesaparecimento | date: 'dd/MM/YYYY'}}</strong></span>
 
-      @if (dataLocalizacao) {
-      <span class="text-gray-800 font-normal text-md">Localizado em: <strong>{{dataLocalizacao | date:
-          'dd/MM/YYYY'}}</strong></span>
-      }
+
+        @if (completo) {
+
+        @if (dataLocalizacao) {
+        <span class="text-gray-800 font-normal text-md">Localizado em: <strong>{{dataLocalizacao | date:
+            'dd/MM/YYYY'}}</strong></span>
+        }
+        <span class="text-gray-800 font-normal text-md">Local de Desaparecimento:
+          <strong>{{desaparecido.ultimaOcorrencia.localDesaparecimentoConcat}}</strong></span>
+
+        <span class="text-gray-800 font-normal text-md">Encontrado Vivo:
+          <strong>{{desaparecido.ultimaOcorrencia.encontradoVivo ? 'Sim' : 'Não'}}</strong></span>
+
+        <span class="text-gray-800 font-normal text-md">Informação Entrevista:
+          <strong>{{desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO.informacao || 'Não Informado'}}</strong></span>
+
+        <span class="text-gray-800 font-normal text-md">Vestimento do desaparecido:
+          <strong>{{desaparecido.ultimaOcorrencia.ocorrenciaEntrevDesapDTO.vestimentasDesaparecido || 'Não Informado'}}</strong></span>
+        }
+
+      </div>
 
     </div>
 
   </div>
+  @if (!completo) {
   <div class="mt-2 -ml-3 flex w-full justify-end">
-    <div
+    <div routerLink="{{desaparecido.id}}"
       class="cursor-pointer mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
       Clique aqui para mais detalhes
       <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -44,5 +77,6 @@
       </svg>
     </div>
   </div>
+  }
   <div class="mb-4"></div>
 </div>

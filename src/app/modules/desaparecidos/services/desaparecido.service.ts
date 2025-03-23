@@ -16,4 +16,8 @@ export class DesaparecidosService {
       { params: parametros }
     );
   }
+
+  buscarDesaparecido(id: number): Observable<any> {
+    return this.http.get<any>(`${env.apiUrl}/pessoas/${id}`);
+  }
 }

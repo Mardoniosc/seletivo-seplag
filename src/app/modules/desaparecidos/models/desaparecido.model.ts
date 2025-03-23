@@ -28,11 +28,11 @@ export interface UltimaOcorrencia {
   encontradoVivo: boolean;
   localDesaparecimentoConcat: string;
   ocorrenciaEntrevDesapDTO: OcorrenciaEntrevDesapDTO;
-  listaCartaz: ListaCartaz[];
+  listaCartaz: Cartaz[];
   ocoId: number;
 }
 
-export interface ListaCartaz {
+export interface Cartaz {
   urlCartaz: string;
   tipoCartaz: string;
 }
