@@ -50,18 +50,26 @@
       </p>
       <p class="text-xs text-gray-500">PREFERENCIALMENTE IMAGENS (SVG, PNG, JPG ou GIF)</p>
     </div>
-    <input id="dropzone-file" type="file" class="hidden" (change)="onFileSelected($event)" />
+    <input id="dropzone-file" type="file" [multiple]="true" class="hidden" (change)="onFileSelected($event)" />
   </label>
 
-    @if (arquivoSelecionado) {
+  @if (arquivosSelecionados.length > 0) {
     <div class="mt-4 text-center">
-      <p class="text-sm font-medium text-gray-700">Arquivo Selecionado: {{ arquivoSelecionado.name }}</p>
+      <p class="text-sm font-medium text-gray-700">Arquivos Selecionados:</p>
+      <ul>
+        @for (arquivo of arquivosSelecionados; track $index) {
+          <li class="text-sm text-gray-600">{{ arquivo.name }}</li>
+        }
+      </ul>
 
-      @if (urlImagem) {
-      <img [src]="urlImagem" alt="Prévia da imagem" class="mt-2 max-w-xs rounded-lg shadow-lg border border-gray-300">
-      }
+      <div class="flex flex-wrap justify-center mt-4">
+        @for (imagem of urlsImagens; track $index) {
+          <img [src]="imagem" alt="Prévia da imagem"
+            class="m-2 max-w-xs rounded-lg shadow-lg border border-gray-300">
+        }
+      </div>
     </div>
-    }
+  }
   </div>
 
 </mat-dialog-content>

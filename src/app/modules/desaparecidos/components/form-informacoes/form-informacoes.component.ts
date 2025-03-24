@@ -11,6 +11,7 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { ETipoMensagem } from '../../../../shared/Models/enums/shared.enums';
 import { MensagemService } from '../../../../shared/services/Mensagem.service';
 import { Desaparecido } from '../../models/desaparecido.model';
 import { DesaparecidosService } from '../../services/desaparecido.service';
@@ -27,8 +28,9 @@ export class FormInformacoesComponent {
   readonly dialogRef = inject(MatDialogRef<FormInformacoesComponent>);
   readonly data = inject<Desaparecido>(MAT_DIALOG_DATA);
 
-  arquivoSelecionado!: File;
-  urlImagem: string | null = null;
+  arquivosSelecionados: File[] = [];
+  urlsImagens: string[] = [];
+
   arrastando = false;
 
   form!: UntypedFormGroup;
@@ -49,14 +51,19 @@ export class FormInformacoesComponent {
     formData.append('descricao', descricao);
     formData.append('data', data);
     formData.append('ocoId', ocoId);
-    formData.append(
-      'files',
-      this.arquivoSelecionado,
-      this.arquivoSelecionado?.name
-    );
+
+    this.arquivosSelecionados.forEach((f) => {
+      formData.append('files', f, f.name);
+    });
 
     this._desaparecidoService.salvarInformacoes(formData).subscribe({
-      next: () => this.dialogRef.close(),
+      next: () => {
+        this.dialogRef.close();
+        this._mensagemService.mensagem(
+          'Informações salvas!',
+          ETipoMensagem.SUCCESS
+        );
+      },
       error: this._mensagemService.mensagemDeError(
         'Erro ao salvar novas informações!'
       ),
@@ -67,24 +74,24 @@ export class FormInformacoesComponent {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.processarArquivo(input.files[0]);
+      this.processarArquivos(Array.from(input.files));
     }
   }
 
-  // Função para processar o arquivo
-  processarArquivo(file: File) {
-    this.arquivoSelecionado = file;
+  // Processa todos os arquivos selecionados
+  processarArquivos(files: File[]) {
+    this.arquivosSelecionados = files;
+    this.urlsImagens = [];
 
-    // Se for uma imagem, gerar um preview
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.urlImagem = e.target?.result as string;
-      };
-      reader.readAsDataURL(file);
-    } else {
-      this.urlImagem = null;
-    }
+    files.forEach((file) => {
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.urlsImagens.push(e.target?.result as string);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
   }
 
   // Eventos de Drag and Drop
@@ -102,7 +109,8 @@ export class FormInformacoesComponent {
     this.arrastando = false;
 
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-      this.processarArquivo(event.dataTransfer.files[0]);
+      const arquivos = Array.from(event.dataTransfer.files);
+      this.processarArquivos(arquivos);
     }
   }
 
