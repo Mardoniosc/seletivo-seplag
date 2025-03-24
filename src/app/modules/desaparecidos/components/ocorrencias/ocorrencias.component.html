@@ -1,0 +1,26 @@
+<div class="flex p-2 space-x-2 flex-wrap w-full">
+  @for (item of ocorrencia.anexos; track $index) {
+  <div class="w-64 bg-white border border-gray-200 rounded-lg shadow-sm">
+    <a [href]="item" target="_blank" rel="noopener noreferrer" class="cursor-pointer">
+      <img class="rounded-t-lg h-40 w-full" onerror="this.src='../../../../../assets/Img/semimagem.gif'" [src]="item"
+        alt="" />
+    </a>
+    <div class="p-2 -mt-7">
+      <h5 class="mb-2 text-xl font-bold  tracking-tight text-gray-900 ">{{ocorrencia.informacao}}</h5>
+      <span class="mb-3 font-normal text-gray-700"><strong>Data: </strong>{{ ocorrencia.data | date: 'dd/MM/yyyy'
+        }}</span>
+    </div>
+  </div>
+
+  } @empty {
+  <div class="w-64 bg-white border border-gray-200 rounded-lg shadow-sm">
+    <img class="rounded-t-lg h-40 w-full" src="../../../../../assets/Img/semimagem.gif" alt="" />
+    <div class="p-2 -mt-7">
+      <h5 class="mb-2 text-xl font-bold  tracking-tight text-gray-900 truncate ...">{{ocorrencia.informacao}}</h5>
+      <span class="mb-3 font-normal text-gray-700"><strong>Data: </strong>{{ ocorrencia.data | date: 'dd/MM/yyyy'
+        }}</span>
+    </div>
+  </div>
+  }
+
+</div>

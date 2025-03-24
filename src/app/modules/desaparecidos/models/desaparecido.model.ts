@@ -56,3 +56,11 @@ export interface Sort {
   unsorted: boolean;
   empty: boolean;
 }
+
+export interface Ocorrencia {
+  ocoId: number;
+  informacao: string;
+  data: Date;
+  id: number;
+  anexos: string[];
+}

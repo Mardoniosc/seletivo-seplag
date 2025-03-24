@@ -7,9 +7,10 @@ import { MensagemService } from '../../../../shared/services/Mensagem.service';
 import { CardCartazComponent } from '../../components/card-cartaz/card-cartaz.component';
 import { CardDesaparecidoComponent } from '../../components/card-desaparecido/card-desaparecido.component';
 import { FormInformacoesComponent } from '../../components/form-informacoes/form-informacoes.component';
+import { OcorrenciasComponent } from '../../components/ocorrencias/ocorrencias.component';
 import { DesaparecidosFacade } from '../../desaparecido.facade';
 import { DesaparecidosState } from '../../desaparecido.state';
-import { Desaparecido } from '../../models/desaparecido.model';
+import { Desaparecido, Ocorrencia } from '../../models/desaparecido.model';
 import { DesaparecidosService } from '../../services/desaparecido.service';
 
 @Component({
@@ -18,6 +19,7 @@ import { DesaparecidosService } from '../../services/desaparecido.service';
     HttpClientModule,
     CardDesaparecidoComponent,
     CardCartazComponent,
+    OcorrenciasComponent,
     ButtonCompartilharComponent,
     MatDialogModule,
     RouterLink,
@@ -32,6 +34,8 @@ export class DetalhesComponent implements OnInit {
 
   desaparecido!: Desaparecido;
 
+  ocorrencias: Ocorrencia[] = [];
+
   readonly dialog = inject(MatDialog);
 
   constructor(
@@ -45,8 +49,12 @@ export class DetalhesComponent implements OnInit {
   }
 
   adicionarInformacoes() {
-    this.dialog.open(FormInformacoesComponent, {
+    const ref = this.dialog.open(FormInformacoesComponent, {
       data: this.desaparecido,
+    });
+
+    ref.afterClosed().subscribe({
+      next: (result) => this._carregaUltimasOcorrencias(),
     });
   }
 
@@ -63,9 +71,21 @@ export class DetalhesComponent implements OnInit {
       .subscribe({
         next: (response) => {
           if (response) this.desaparecido = response;
+          this._carregaUltimasOcorrencias();
         },
         error: this._mensagemService.mensagemDeError(
           'Erro ao buscar detalhes do desaparecido!!!'
+        ),
+      });
+  }
+
+  private _carregaUltimasOcorrencias() {
+    this._desaparecidosService
+      .buscarOcorrencias(this.desaparecido.ultimaOcorrencia.ocoId)
+      .subscribe({
+        next: (response) => (this.ocorrencias = response),
+        error: this._mensagemService.mensagemDeError(
+          'Erro ao buscar ultimas ocorrencias!!!'
         ),
       });
   }

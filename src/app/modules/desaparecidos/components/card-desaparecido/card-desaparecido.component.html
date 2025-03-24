@@ -10,7 +10,9 @@
   </div>
   }
   @if (desaparecido.urlFoto) {
-  <img class="h-80" [src]="desaparecido.urlFoto" alt="" [ngClass]="{'max-w-md': completo, 'w-full': !completo, }" />
+  <img class="h-80" [src]="desaparecido.urlFoto"
+    onerror="this.src='../../../../../assets/Img/semimagem.gif'"
+  alt="" [ngClass]="{'max-w-md': completo, 'w-full': !completo, }" />
 
   }@else {
   <img class="h-80" src="../../../../../assets/Img/semimagem.gif" alt=""

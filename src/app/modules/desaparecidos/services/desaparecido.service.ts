@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment as env } from '../../../../environments/environment';
 import {
   Desaparecido,
+  Ocorrencia,
   ResponseDesaparecido,
 } from '../models/desaparecido.model';
 
@@ -17,6 +18,12 @@ export class DesaparecidosService {
     return this.http.get<ResponseDesaparecido>(
       `${env.apiUrl}/pessoas/aberto/filtro`,
       { params: parametros }
+    );
+  }
+
+  buscarOcorrencias(ocorrenciaId: number): Observable<Ocorrencia[]> {
+    return this.http.get<Ocorrencia[]>(
+      `${env.apiUrl}/ocorrencias/informacoes-desaparecido?ocorrenciaId=${ocorrenciaId}`
     );
   }
 
