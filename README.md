@@ -1,27 +1,88 @@
-# SeletivoSeplag
+# Projeto Angular 19 com Testes e Docker (Teste prativo frontend seletivo seplag)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.9.
+Este repositório contém um projeto desenvolvido em Angular 19, incluindo testes unitários, testes de ponta a ponta (E2E) e suporte para execução via Docker.
 
-## Development server
+# DADOS INSCRIÇÃO
+ + Nome e Email
+    - Mardonio Silva da Costa
+    - Mardonio@live.com
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Requisitos
 
-## Code scaffolding
+Certifique-se de ter os seguintes requisitos instalados em seu ambiente:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Node.js (versão recomendada: 18+)
 
-## Build
+- Angular CLI (versão recomendada: 19+)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Docker
 
-## Running unit tests
+## Instalação
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Clone o repositório:
+```
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+```
+## Instale as dependências:
+```
+npm install
+```
+## Executando o Projeto
 
-## Running end-to-end tests
+Para iniciar o projeto localmente, utilize o comando:
+```
+ng serve
+```
+O aplicativo estará disponível em http://localhost:4200/.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Testes
 
-## Further help
+### Testes Unitários
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para rodar os testes unitários com Karma, utilize:
+```
+ng test
+```
+### Testes E2E (End-to-End)
+
+Para executar os testes E2E com Cypress ou Protractor:
+```
+ng e2e
+```
+## Executando com Docker
+
+Construir a imagem Docker:
+```
+docker build -t angular-app .
+```
+Rodar o container:
+```
+docker run -p 4200:80 angular-app
+```
+
+O projeto estará acessível em http://localhost:4200/.
+
+## Estrutura do Projeto
+```
+/SELETIVO-SEPLAG
+├── src/                  # Código-fonte do Angular
+│   ├── app/              # Componentes e serviços
+│        ├── core         # Tudo que aplicação precisa para executar
+│        ├── modules      # Partes do sistema divido em modulos
+│        ├── shared       # Partes do sistema compartilhada entre modulos
+│   ├── assets/           # Arquivos estáticos
+│   ├── environments/     # Configuração de ambientes
+│   ├── themes/           # Configuração de tailwindcss
+│   ├── main.ts           # Ponto de entrada
+│   └── styles.scss       # Estilos globais
+├── e2e/                  # Testes end-to-end
+├── docker/               # Configuração do Docker
+├── angular.json          # Configuração do Angular
+├── package.json          # Dependências do projeto
+├── README.md             # Documentação
+└── Dockerfile            # Arquivo para construção do container
+```
+## Licença
+
+Este projeto é distribuído sob a licença MIT. Sinta-se à vontade para usá-lo e modificá-lo conforme necessário.
