@@ -14,7 +14,7 @@
   <app-card-desaparecido class="md:w-full" [desaparecido]="desaparecido" [completo]="true"></app-card-desaparecido>
   }
 
-  @if (desaparecido?.ultimaOcorrencia?.listaCartaz?.length) {
+  @if (desaparecido && desaparecido.ultimaOcorrencia.listaCartaz?.length) {
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full mt-4">
     @for (cartaz of desaparecido.ultimaOcorrencia.listaCartaz; track $index) {
     <app-card-cartaz [cartaz]="cartaz"></app-card-cartaz>
@@ -40,7 +40,7 @@
       Adicionar mais informações
     </button>
 
-    @if (!desaparecido?.ultimaOcorrencia?.listaCartaz?.length) {
+    @if (desaparecido && !desaparecido.ultimaOcorrencia.listaCartaz?.length) {
     <app-button-compartilhar class="mt-5"></app-button-compartilhar>
     }
   </div>
