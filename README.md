@@ -67,16 +67,17 @@ O projeto estará acessível em http://localhost:4200/.
 ```
 /SELETIVO-SEPLAG
 ├── src/                  # Código-fonte do Angular
-│   ├── app/              # Componentes e serviços
-│        ├── core         # Tudo que aplicação precisa para executar
-│        ├── modules      # Partes do sistema divido em modulos
-│        ├── shared       # Partes do sistema compartilhada entre modulos
+│   └── app/              # Componentes e serviços
+│        ├── core/        # Tudo que aplicação precisa para executar
+│        ├── modules/     # Partes do sistema divido em modulos
+│        └── shared/      # Partes do sistema compartilhada entre modulos
 │   ├── assets/           # Arquivos estáticos
 │   ├── environments/     # Configuração de ambientes
 │   ├── themes/           # Configuração de tailwindcss
 │   ├── main.ts           # Ponto de entrada
 │   └── styles.scss       # Estilos globais
-├── e2e/                  # Testes end-to-end
+├── cypress/
+│      └──e2e/            # Testes end-to-end
 ├── docker/               # Configuração do Docker
 ├── angular.json          # Configuração do Angular
 ├── package.json          # Dependências do projeto
