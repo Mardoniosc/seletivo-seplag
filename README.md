@@ -47,8 +47,9 @@ ng test
 ### Testes E2E (End-to-End)
 
 Para executar os testes E2E com Cypress ou Protractor:
+com o projeto rodando! Execute
 ```
-ng e2e
+npx cypress run
 ```
 ## Executando com Docker
 
