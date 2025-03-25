@@ -14,7 +14,7 @@
   <app-card-desaparecido class="md:w-full" [desaparecido]="desaparecido" [completo]="true"></app-card-desaparecido>
   }
 
-  @if (desaparecido?.ultimaOcorrencia?.listaCartaz?.length) {
+  @if (desaparecido && desaparecido.ultimaOcorrencia.listaCartaz?.length) {
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full mt-4">
     @for (cartaz of desaparecido.ultimaOcorrencia.listaCartaz; track $index) {
     <app-card-cartaz [cartaz]="cartaz"></app-card-cartaz>
@@ -32,7 +32,7 @@
 
 
   <div class="w-full flex justify-end flex-wrap">
-    <button type="button" (click)="adicionarInformacoes()"
+    <button type="button" (click)="adicionarInformacoes()" id="btn-mais-informacoes"
       class="flex items-center text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none cursor-pointer mt-5">
       <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-1">
         <path d="M4 12H20M12 4V20" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -40,7 +40,7 @@
       Adicionar mais informações
     </button>
 
-    @if (!desaparecido?.ultimaOcorrencia?.listaCartaz?.length) {
+    @if (desaparecido && !desaparecido.ultimaOcorrencia.listaCartaz?.length) {
     <app-button-compartilhar class="mt-5"></app-button-compartilhar>
     }
   </div>
