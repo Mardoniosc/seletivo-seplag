@@ -1,4 +1,4 @@
-# Projeto Angular 19 com Testes e Docker (Teste prativo frontend seletivo seplag)
+# Projeto Angular 19 com Testes e Docker (Teste pratico frontend seletivo seplag)
 
 Este repositório contém um projeto desenvolvido em Angular 19, incluindo testes unitários, testes de ponta a ponta (E2E) e suporte para execução via Docker.
 
@@ -61,6 +61,11 @@ Rodar o container:
 docker run -p 4200:80 angular-app
 ```
 
+Ou, se estiver usando docker-compose:
+```
+docker-compose up -d
+```
+
 O projeto estará acessível em http://localhost:4200/.
 
 ## Estrutura do Projeto
@@ -78,11 +83,11 @@ O projeto estará acessível em http://localhost:4200/.
 │   └── styles.scss       # Estilos globais
 ├── cypress/
 │      └──e2e/            # Testes end-to-end
-├── docker/               # Configuração do Docker
 ├── angular.json          # Configuração do Angular
 ├── package.json          # Dependências do projeto
 ├── README.md             # Documentação
 └── Dockerfile            # Arquivo para construção do container
+└── docker-compose.yml    # Arquivo para construção em docker compose
 ```
 ## Licença
 
