@@ -1,12 +1,10 @@
 describe('Página de Desaparecidos', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200/desaparecido'); // Ajuste a rota conforme necessário
+    cy.visit('http://localhost:4200/desaparecido');
   });
 
   it('Deve carregar a lista de desaparecidos', () => {
-    cy.contains('Dados Para Consulta') // Ajuste a classe conforme sua implementação
-      .should('exist')
-      .and('be.visible');
+    cy.contains('Dados Para Consulta').should('exist').and('be.visible');
   });
 
   it('Deve fazer uma busca por joão e mostrar pagina de detalhes', () => {

@@ -10,9 +10,4 @@ import { Cartaz } from '../../models/desaparecido.model';
 })
 export class CardCartazComponent {
   @Input() cartaz!: Cartaz;
-
-  teste: Cartaz = {
-    tipoCartaz: 'PDF',
-    urlCartaz: 'https://www.google.com',
-  };
 }
