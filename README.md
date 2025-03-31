@@ -2,6 +2,8 @@
 
 Este repositório contém um projeto desenvolvido em Angular 19, incluindo testes unitários, testes de ponta a ponta (E2E) e suporte para execução via Docker.
 
+[Live Demo Projetos](https://desaparecido.mardonio.dev.br/desaparecido)
+
 # DADOS INSCRIÇÃO
  + Nome e Email
     - Mardonio Silva da Costa
